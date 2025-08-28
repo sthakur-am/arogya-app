@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  TrendingUp, 
+  TrendingUp,
+  Briefcase,
   Calendar, 
   Clock, 
   CheckSquare, 
@@ -14,7 +15,7 @@ import {
 import { useAppContext } from '../contexts/AppContext';
 
 const Dashboard = () => {
-  const { user, healthTasks, healthEvents, notifications } = useAppContext();
+  const { user, healthTasks, healthEvents, notifications, setShowWorkspace } = useAppContext();
   const [selectedView, setSelectedView] = useState<'day' | 'week' | 'month'>('week');
 
   const healthScoreChange = +12; // Mock improvement
@@ -64,12 +65,14 @@ const Dashboard = () => {
               Last check-in: {lastCheckIn.toLocaleDateString()}
             </p>
           </div>
-          <div className="text-right">
-            <div className="text-3xl font-bold mb-1">{user?.healthScore || 78}</div>
-            <div className="flex items-center text-blue-100">
-              <TrendingUp className="w-4 h-4 mr-1" />
-              <span className="text-sm">+{healthScoreChange} this week</span>
-            </div>
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setShowWorkspace(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+            >
+              <Briefcase className="w-5 h-5 text-white" />
+              <span className="text-white font-medium">Workspace</span>
+            </button>
           </div>
         </div>
       </div>
