@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ArrowLeft, User, MapPin, Heart, Calendar } from 'lucide-react';
+import { ArrowRight, ArrowLeft, User, MapPin, Heart, Calendar, Mail } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
 
 interface SignupData {
