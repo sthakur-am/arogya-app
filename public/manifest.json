@@ -1,0 +1,26 @@
+{
+  "name": "HealthCare Pro",
+  "short_name": "HealthCare",
+  "description": "Enterprise-grade personalized healthcare management application",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563EB",
+  "orientation": "portrait",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDgiIGZpbGw9IiMyNTYzRUIiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xOS4xNCwxMi45NGMwLjA0LC0wLjMsMC4wNiwtMC42MSwwLjA2LC0wLjk0YzAsLTAuMzIgLTAuMDIsLTAuNjQgLTAuMDcsLTAuOTRsMS45OSwtMS41NmMwLjE4LC0wLjE0IDAuMjMsLTAuNDEgMC4xMiwtMC42MWwtMS44OSwtMy4yN2MtMC4xMSwtMC4yIC0wLjM3LC0wLjI5IC0wLjU5LC0wLjIybC0yLjM1LDAuOTZjLTAuNDksLTAuMzcgLTEuMDMsLTAuNjggLTEuNjIsLTAuOTRsLTAuMzYsLTIuNUM5LjI1LDEuNTggOC45NywxLjMgOC43MywxLjNINS4yN2MtMC4yNCwwIC0wLjUyLDAuMjggLTAuNTcsMC41M0w0LjM0LDQuMzhjLTAuNTksMC4yNiAtMS4xMywwLjU3IC0xLjYyLDAuOTRsLTIuMzUsLTAuOTZjLTAuMjIsLTAuMDggLTAuNDcsMC4wMiAtMC41OSwwLjIyTDEuNjcsNy44NmMtMC4xMSwwLjIgLTAuMDYsMC40NyAwLjEyLDAuNjFsMS45OSwxLjU2Yy0wLjA1LDAuMyAtMC4wNywwLjYyIC0wLjA3LDAuOTRzMC4wMiwwLjY0IDAuMDcsMC45NGwtMS45OSwxLjU2Yy0wLjE4LDAuMTQgLTAuMjMsMC40MSAtMC4xMiwwLjYxbDEuODksMy4yN2MwLjExLDAuMiAwLjM3LDAuMjkgMC41OSwwLjIybDIuMzUsLTAuOTZjMC40OSwwLjM3IDEuMDMsMC42OCAxLjYyLDAuOTRsMC4zNiwyLjVjMC4wNSwwLjI0IDAuMzMsMC41MyAwLjU3LDAuNTNoMy40NmMwLjI0LDAgMC41MiwtMC4yOSAwLjU3LC0wLjUzbDAuMzYsLTIuNWMwLjU5LC0wLjI2IDEuMTMsLTAuNTcgMS42MiwtMC45NGwyLjM1LDAuOTZjMC4yMiwwLjA3IDAuNDcsLTAuMDIgMC41OSwtMC4yMmwxLjg5LC0zLjI3YzAuMTEsLTAuMiAwLjA2LC0wLjQ3IC0wLjEyLC0wLjYxTDE5LjE0LDEyLjk0ek0xMiw3YzIuNzYsMCA1LDIuMjQgNSw1cy0yLjI0LDUgLTUsNVM3LDE0Ljc2IDcsMTJTOS4yNCw3IDEyLDd6Ii8+Cjwvc3ZnPgo8L3N2Zz4K",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTI4IiBmaWxsPSIjMjU2M0VCIi8+Cjxzdmcgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHg9IjEyOCIgeT0iMTI4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KPHA+CjwvZz4KPC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "prefer_related_applications": false
+}
