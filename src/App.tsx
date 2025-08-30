@@ -126,8 +126,8 @@ const AppContent = () => {
         {renderActiveTab()}
       </main>
 
-      {showChat && <ChatAssistant />}
-      {showWorkspace && <Workspace />}
+      <ChatAssistant isOpen={showChat} onClose={() => setShowChat(false)} />
+      <Workspace isOpen={showWorkspace} onClose={() => setShowWorkspace(false)} />
     </div>
   );
 };

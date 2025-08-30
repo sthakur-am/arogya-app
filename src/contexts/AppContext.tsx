@@ -274,25 +274,29 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const sendMessage = (message: string) => {
-    const userMessage: ChatMessage = {
-      id: Date.now().toString(),
-      content: message,
-      sender: 'user',
-      timestamp: new Date()
-    };
-    
-    setChatMessages(prev => [...prev, userMessage]);
+    if (message.trim()) {
+      const userMessage: ChatMessage = {
+        id: Date.now().toString(),
+        content: message,
+        sender: 'user',
+        timestamp: new Date()
+      };
+      
+      setChatMessages(prev => [...prev, userMessage]);
+    }
     
     // Simulate AI response
     setTimeout(() => {
       const aiResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: "I'm here to help with your healthcare questions. Based on your profile, I can provide personalized health advice and reminders. What would you like to know?",
+        content: message.trim() 
+          ? "I'm here to help with your healthcare questions. Based on your profile, I can provide personalized health advice and reminders. What would you like to know?"
+          : `Hello ${user?.name?.split(' ')[0] || 'there'}! I'm your healthcare assistant. How can I help you today?`,
         sender: 'assistant',
         timestamp: new Date()
       };
       setChatMessages(prev => [...prev, aiResponse]);
-    }, 1000);
+    }, message.trim() ? 1000 : 100);
   };
 
   return (
