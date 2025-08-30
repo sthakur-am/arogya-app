@@ -76,7 +76,7 @@ const AppContent = () => {
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => setShowHealthUpdate(true)}
-                  className="flex items-center space-x-3 px-4 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors group"
+                  className="flex-1 flex items-center space-x-3 px-4 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors group mr-4"
                 >
                   <div className="bg-blue-100 p-2 rounded-lg group-hover:bg-blue-200 transition-colors">
                     <Plus className="w-4 h-4 text-blue-600" />
