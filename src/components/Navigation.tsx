@@ -141,20 +141,7 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
               <p className="text-sm text-blue-100 mb-4">
                 Your personalized healthcare companion
               </p>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => setShowChat(true)}
-                  className="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Chat
-                </button>
-                <button
-                  onClick={() => setShowWorkspace(true)}
-                  className="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Workspace
-                </button>
-              </div>
+        
             </div>
           </div>
         </div>
