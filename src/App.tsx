@@ -66,21 +66,20 @@ const AppContent = () => {
       />
       
       <main className="md:ml-64 flex-1 pb-20 md:pb-0 order-2">
-        {/* Sticky Toolbar - moved from Dashboard */}
-        <div className="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        {/* Sticky Toolbar */}
+        <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
           {/* Desktop Toolbar */}
           <div className="hidden md:block">
-            <div className="md:ml-0 px-6 py-4">
+            <div className="md:ml-0 px-6 py-3">
               <div className="flex items-center justify-between">
-                <h1 className="text-xl font-bold">Welcome back!</h1>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-4">
                   {/* User Button */}
                   <div className="relative">
                     <button
                       onClick={() => setShowUserMenu(!showUserMenu)}
-                      className="relative p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                      className="relative p-1 hover:bg-gray-100 rounded-full transition-colors"
                     >
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                      <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                         <span className="text-white font-medium text-sm">
                           {user?.name?.charAt(0) || 'U'}
                         </span>
@@ -137,23 +136,26 @@ const AppContent = () => {
                       </div>
                     )}
                   </div>
+                  <h1 className="text-lg font-semibold text-gray-900">Welcome back!</h1>
+                </div>
 
+                <div className="flex items-center space-x-2">
                   {/* Chat Button */}
                   <button
                     onClick={() => setShowChat(true)}
-                    className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                     title="Healthcare Assistant"
                   >
-                    <MessageCircle className="w-5 h-5 text-white" />
+                    <MessageCircle className="w-5 h-5 text-gray-600" />
                   </button>
 
                   {/* Workspace Button */}
                   <button
                     onClick={() => setShowWorkspace(true)}
-                    className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                     title="Workspace"
                   >
-                    <Briefcase className="w-5 h-5 text-white" />
+                    <Briefcase className="w-5 h-5 text-gray-600" />
                   </button>
                 </div>
               </div>
@@ -161,14 +163,14 @@ const AppContent = () => {
           </div>
 
           {/* Mobile Toolbar */}
-          <div className="md:hidden px-4 py-3">
+          <div className="md:hidden px-4 py-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 {/* User Button */}
                 <div className="relative">
                   <button
                     onClick={() => setShowUserMenu(!showUserMenu)}
-                    className="relative p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                    className="relative p-1 hover:bg-gray-100 rounded-full transition-colors"
                   >
                     <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-medium text-sm">
@@ -176,7 +178,7 @@ const AppContent = () => {
                       </span>
                     </div>
                     {notificationCount > 0 && (
-                      <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                         {notificationCount > 9 ? '9+' : notificationCount}
                       </span>
                     )}
@@ -227,51 +229,26 @@ const AppContent = () => {
                     </div>
                   )}
                 </div>
-                <h1 className="text-lg font-bold">Welcome back!</h1>
+                <h1 className="text-base font-semibold text-gray-900">Welcome back!</h1>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1">
                 {/* Chat Button */}
                 <button
                   onClick={() => setShowChat(true)}
-                  className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   title="Healthcare Assistant"
                 >
-                  <MessageCircle className="w-5 h-5 text-white" />
+                  <MessageCircle className="w-5 h-5 text-gray-600" />
                 </button>
                 {/* Workspace Button */}
                 <button
                   onClick={() => setShowWorkspace(true)}
-                  className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   title="Workspace"
                 >
-                  <Briefcase className="w-5 h-5 text-white" />
+                  <Briefcase className="w-5 h-5 text-gray-600" />
                 </button>
               </div>
             </div>
           </div>
         </div>
-        {renderActiveTab()}
-      </main>
-
-      <Workspace 
-        isOpen={showWorkspace}
-        onClose={() => setShowWorkspace(false)}
-      />
-
-      <ChatAssistant 
-        isOpen={showChat}
-        onClose={() => setShowChat(false)}
-      />
-    </div>
-  );
-};
-
-function App() {
-  return (
-    <AppProvider>
-      <AppContent />
-    </AppProvider>
-  );
-}
-
-export default App;
