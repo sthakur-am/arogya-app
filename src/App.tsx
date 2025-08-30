@@ -12,7 +12,7 @@ import Navigation from './components/Navigation';
 import Workspace from './components/Workspace';
 import ChatAssistant from './components/ChatAssistant';
 import HealthUpdateModal from './components/HealthUpdateModal';
-import { MessageCircle, LogOut, Briefcase, Plus } from 'lucide-react';
+import { MessageCircle, LogOut, Briefcase, Plus, Bell } from 'lucide-react';
 
 const AppContent = () => {
   const { 
@@ -85,6 +85,19 @@ const AppContent = () => {
                 </button>
 
                 <div className="flex items-center space-x-2">
+                  {/* Notification Button */}
+                  <button
+                    className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    title="Notifications"
+                  >
+                    <Bell className="w-5 h-5 text-gray-600" />
+                    {unreadNotifications > 0 && (
+                      <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                        {unreadNotifications > 9 ? '9+' : unreadNotifications}
+                      </span>
+                    )}
+                  </button>
+
                   {/* Workspace Button */}
                   <button
                     onClick={() => setShowWorkspace(true)}
@@ -121,11 +134,6 @@ const AppContent = () => {
                       {user?.name?.charAt(0) || 'U'}
                     </span>
                   </div>
-                  {unreadNotifications > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                      {unreadNotifications > 9 ? '9+' : unreadNotifications}
-                    </span>
-                  )}
                 </button>
 
                 {/* Health Update Button */}
@@ -141,6 +149,19 @@ const AppContent = () => {
               </div>
 
               <div className="flex items-center space-x-1">
+                {/* Notification Button */}
+                <button
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  title="Notifications"
+                >
+                  <Bell className="w-5 h-5 text-gray-600" />
+                  {unreadNotifications > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      {unreadNotifications > 9 ? '9+' : unreadNotifications}
+                    </span>
+                  )}
+                </button>
+
                 {/* Workspace Button */}
                 <button
                   onClick={() => setShowWorkspace(true)}

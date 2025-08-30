@@ -51,11 +51,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
                       {user?.name?.charAt(0) || 'U'}
                     </span>
                   </div>
-                  {unreadNotifications.length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                      {unreadNotifications.length > 9 ? '9+' : unreadNotifications.length}
-                    </span>
-                  )}
                 </div>
                 <div className="flex-1 text-left">
                   <p className="font-medium text-gray-900">{user?.name}</p>
