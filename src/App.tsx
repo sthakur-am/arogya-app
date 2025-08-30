@@ -110,22 +110,35 @@ const AppContent = () => {
           {/* Mobile Toolbar */}
           <div className="md:hidden px-4 py-2">
             <div className="flex items-center justify-between">
-              {/* User Button */}
-              <button
-                onClick={() => setShowUserMenu(!showUserMenu)}
-                className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-medium text-sm">
-                    {user?.name?.charAt(0) || 'U'}
-                  </span>
-                </div>
-                {unreadNotifications > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                    {unreadNotifications > 9 ? '9+' : unreadNotifications}
-                  </span>
-                )}
-              </button>
+              <div className="flex items-center space-x-3 flex-1">
+                {/* User Button */}
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <span className="text-white font-medium text-sm">
+                      {user?.name?.charAt(0) || 'U'}
+                    </span>
+                  </div>
+                  {unreadNotifications > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      {unreadNotifications > 9 ? '9+' : unreadNotifications}
+                    </span>
+                  )}
+                </button>
+
+                {/* Health Update Button */}
+                <button
+                  onClick={() => setShowHealthUpdate(true)}
+                  className="flex-1 flex items-center space-x-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors group"
+                >
+                  <div className="bg-blue-100 p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors">
+                    <Plus className="w-3 h-3 text-blue-600" />
+                  </div>
+                  <span className="text-sm text-gray-700 group-hover:text-gray-900">Add health update...</span>
+                </button>
+              </div>
 
               <div className="flex items-center space-x-1">
                 {/* Workspace Button */}
