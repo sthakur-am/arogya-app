@@ -64,11 +64,8 @@ const Dashboard = () => {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold mb-2">
-              Welcome back, {user?.name?.split(' ')[0]}!
+              Welcome back!
             </h1>
-            <p className="text-blue-100">
-              Last check-in: {lastCheckIn.toLocaleDateString()}
-            </p>
           </div>
           <div className="flex items-center space-x-4">
             {/* User Button with Notifications */}
@@ -82,12 +79,6 @@ const Dashboard = () => {
                     {user?.name?.charAt(0) || 'U'}
                   </span>
                 </div>
-                {showUserMenu && (
-                  <div className="text-left">
-                    <p className="text-sm font-medium text-white">{user?.name}</p>
-                    <p className="text-xs text-blue-100">{user?.email}</p>
-                  </div>
-                )}
                 <ChevronDown className={`w-4 h-4 text-white transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
                 {notificationCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
@@ -99,11 +90,6 @@ const Dashboard = () => {
               {/* User Dropdown */}
               {showUserMenu && (
                 <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-                    <p className="text-xs text-gray-600">{user?.email}</p>
-                  </div>
-                  
                   {/* Notifications Section */}
                   <div className="px-4 py-3 border-b border-gray-100">
                     <div className="flex items-center justify-between mb-2">
@@ -149,10 +135,9 @@ const Dashboard = () => {
 
             <button
               onClick={() => setShowWorkspace(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+              className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
             >
               <Briefcase className="w-5 h-5 text-white" />
-              <span className="text-white font-medium">Workspace</span>
             </button>
           </div>
         </div>

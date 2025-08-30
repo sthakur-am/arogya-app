@@ -61,7 +61,7 @@ const AppContent = () => {
         notificationCount={unreadNotifications}
       />
       
-      <main className="pb-16 md:pb-0">
+      <main className="md:ml-64">
         {renderActiveTab()}
       </main>
 
