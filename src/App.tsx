@@ -252,3 +252,22 @@ const AppContent = () => {
             </div>
           </div>
         </div>
+
+        {renderActiveTab()}
+      </main>
+
+      {showChat && <ChatAssistant />}
+      {showWorkspace && <Workspace />}
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
+};
+
+export default App;
