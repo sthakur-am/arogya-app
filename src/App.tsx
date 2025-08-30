@@ -12,7 +12,7 @@ import Navigation from './components/Navigation';
 import Workspace from './components/Workspace';
 import ChatAssistant from './components/ChatAssistant';
 import HealthUpdateModal from './components/HealthUpdateModal';
-import { MessageCircle, LogOut, Briefcase } from 'lucide-react';
+import { MessageCircle, LogOut, Briefcase, Plus } from 'lucide-react';
 
 const AppContent = () => {
   const { 
