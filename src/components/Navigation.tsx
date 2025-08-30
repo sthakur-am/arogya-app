@@ -11,8 +11,6 @@ import {
 } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
 
-import { useAppContext } from '../contexts/AppContext';
-
 interface NavigationProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
