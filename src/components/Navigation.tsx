@@ -128,31 +128,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
               ))}
             </div>
           </div>
-
-          {/* Product Banner at Bottom */}
-          <div className="p-6">
-            <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl p-6 text-center">
-              <div className="bg-white bg-opacity-20 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">HealthCare Pro</h3>
-              <p className="text-blue-100 text-sm mb-4">Your personalized healthcare companion</p>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => setShowChat(true)}
-                  className="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Chat
-                </button>
-                <button
-                  onClick={() => setShowWorkspace(true)}
-                  className="flex-1 bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Workspace
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </nav>
 
