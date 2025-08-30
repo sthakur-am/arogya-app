@@ -184,7 +184,7 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
         </div>
       </nav>
 
-      {/* Mobile Bottom Navigation */}
+      {/* Mobile Tool Bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
         <div className="grid grid-cols-5 h-16">
           {tabs.map((tab) => (
