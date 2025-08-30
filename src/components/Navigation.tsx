@@ -184,18 +184,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
         </div>
       </nav>
 
-      {/* Mobile Top Navigation */}
-      <nav className="md:hidden bg-white shadow-sm border-b border-gray-200 order-1">
-        <div className="px-4 py-3">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Heart className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">HealthCare Pro</span>
-          </div>
-        </div>
-      </nav>
-
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
         <div className="grid grid-cols-5 h-16">
