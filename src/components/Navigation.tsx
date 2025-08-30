@@ -94,39 +94,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
         </div>
       </nav>
     </>
-        <div className="px-4 py-3">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Heart className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">HealthCare Pro</span>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Sticky Toolbar */}
-      <nav className="md:hidden sticky top-0 bg-white border-b border-gray-200 z-40">
-        <div className="grid grid-cols-5 h-16">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => onTabChange(tab.id)}
-              className={`flex flex-col items-center justify-center space-y-1 ${
-                activeTab === tab.id
-                  ? 'text-blue-600'
-                  : 'text-gray-600'
-              }`}
-            >
-              <tab.icon className="w-5 h-5" />
-              <span className="text-xs font-medium">{tab.name}</span>
-              {activeTab === tab.id && (
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-blue-600 rounded-b-full"></div>
-              )}
-            </button>
-          ))}
-        </div>
-      </nav>
-    </>
   );
 };
 
