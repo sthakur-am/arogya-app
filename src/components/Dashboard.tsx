@@ -8,6 +8,7 @@ import {
   Activity,
   ChevronRight,
   Target,
+  Bell,
 } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
 
