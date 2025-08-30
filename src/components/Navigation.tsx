@@ -155,23 +155,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
           </div>
         </div>
       </nav>
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => onTabChange(tab.id)}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  activeTab === tab.id
-                    ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                }`}
-              >
-                <tab.icon className="w-5 h-5" />
-                <span>{tab.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </nav>
 
       {/* Mobile Top Navigation */}
       <nav className="md:hidden bg-white shadow-sm border-b border-gray-200 order-1">
