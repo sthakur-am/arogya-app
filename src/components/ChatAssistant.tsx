@@ -20,6 +20,16 @@ const ChatAssistant = ({ isOpen, onClose }: ChatAssistantProps) => {
     scrollToBottom();
   }, [chatMessages]);
 
+  useEffect(() => {
+    if (isOpen && chatMessages.length === 0) {
+      // Send initial greeting when chat opens
+      const greeting = `Hello ${user?.name?.split(' ')[0] || 'there'}! I'm your healthcare assistant. How can I help you today?`;
+      setTimeout(() => {
+        sendMessage(''); // This will trigger the AI response with greeting
+      }, 500);
+    }
+  }, [isOpen, chatMessages.length, user?.name, sendMessage]);
+
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputMessage.trim()) {
