@@ -11,6 +11,7 @@ import Services from './components/Services';
 import Navigation from './components/Navigation';
 import Workspace from './components/Workspace';
 import ChatAssistant from './components/ChatAssistant';
+import HealthUpdateModal from './components/HealthUpdateModal';
 import { MessageCircle, LogOut, Briefcase } from 'lucide-react';
 
 const AppContent = () => {
@@ -28,6 +29,7 @@ const AppContent = () => {
   } = useAppContext();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showHealthUpdate, setShowHealthUpdate] = useState(false);
 
   const unreadNotifications = notifications.filter(n => !n.read).length;
   const notificationCount = unreadNotifications;
@@ -72,7 +74,15 @@ const AppContent = () => {
           <div className="hidden md:block">
             <div className="px-6 py-3">
               <div className="flex items-center justify-between">
-                <h1 className="text-lg font-semibold text-gray-900">Welcome back!</h1>
+                <button
+                  onClick={() => setShowHealthUpdate(true)}
+                  className="flex items-center space-x-3 px-4 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors group"
+                >
+                  <div className="bg-blue-100 p-2 rounded-lg group-hover:bg-blue-200 transition-colors">
+                    <Plus className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <span className="text-gray-700 group-hover:text-gray-900">Add health update...</span>
+                </button>
 
                 <div className="flex items-center space-x-2">
                   {/* Workspace Button */}
@@ -189,6 +199,7 @@ const AppContent = () => {
 
       <ChatAssistant isOpen={showChat} onClose={() => setShowChat(false)} />
       <Workspace isOpen={showWorkspace} onClose={() => setShowWorkspace(false)} />
+      <HealthUpdateModal isOpen={showHealthUpdate} onClose={() => setShowHealthUpdate(false)} />
     </div>
   );
 };
