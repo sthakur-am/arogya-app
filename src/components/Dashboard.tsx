@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
 import { 
   TrendingUp,
-  Briefcase,
   Calendar, 
   Clock, 
   CheckSquare, 
-  AlertCircle, 
   Heart, 
   Activity,
-  Bell,
   ChevronRight,
   Target,
-  User,
-  ChevronDown,
-  LogOut
 } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
 
 const Dashboard = () => {
-  const { user, healthTasks, healthEvents, notifications, setShowWorkspace, logout } = useAppContext();
+  const { user, healthTasks, healthEvents } = useAppContext();
   const [selectedView, setSelectedView] = useState<'day' | 'week' | 'month'>('week');
-  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const healthScoreChange = +12; // Mock improvement
   const lastCheckIn = user?.lastCheckIn ? new Date(user.lastCheckIn) : new Date();
@@ -55,111 +48,9 @@ const Dashboard = () => {
   const unreadNotifications = notifications.filter(n => !n.read);
   const pendingTasks = healthTasks.filter(t => t.status === 'pending');
   const upcomingEvents = healthEvents.slice(0, 3);
-  const notificationCount = unreadNotifications.length;
 
   return (
     <div className="p-6 space-y-6 md:order-none order-3">
-      {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white md:order-none order-1">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold mb-2">
-              Welcome back, {user?.name?.split(' ')[0]}!
-            </h1>
-            <p className="text-blue-100">
-              Last check-in: {lastCheckIn.toLocaleDateString()}
-            </p>
-          </div>
-          <div className="flex items-center space-x-4">
-            {/* User Button with Notifications */}
-            <div className="relative">
-              <button
-                onClick={() => setShowUserMenu(!showUserMenu)}
-                className="relative p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
-              >
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-medium text-sm">
-                    {user?.name?.charAt(0) || 'U'}
-                  </span>
-                </div>
-                {notificationCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                    {notificationCount > 9 ? '9+' : notificationCount}
-                  </span>
-                )}
-              </button>
-
-              {/* User Dropdown */}
-              {showUserMenu && (
-                <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  {/* User Info Section */}
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                        <span className="text-white font-medium">
-                          {user?.name?.charAt(0) || 'U'}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-                        <p className="text-xs text-gray-500">{user?.email}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Notifications Section */}
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-gray-900">Notifications</span>
-                      {notificationCount > 0 && (
-                        <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                          {notificationCount} new
-                        </span>
-                      )}
-                    </div>
-                    <div className="max-h-48 overflow-y-auto space-y-2">
-                      {unreadNotifications.length > 0 ? (
-                        unreadNotifications.slice(0, 3).map((notification) => (
-                          <div key={notification.id} className="p-2 bg-blue-50 rounded-lg">
-                            <p className="text-xs font-medium text-gray-900">{notification.title}</p>
-                            <p className="text-xs text-gray-600 truncate">{notification.message}</p>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-xs text-gray-500">No new notifications</p>
-                      )}
-                    </div>
-                    {unreadNotifications.length > 3 && (
-                      <button className="text-xs text-blue-600 hover:text-blue-700 mt-2">
-                        View all notifications
-                      </button>
-                    )}
-                  </div>
-
-                  <button
-                    onClick={() => {
-                      logout();
-                      setShowUserMenu(false);
-                    }}
-                    className="w-full flex items-center space-x-2 px-4 py-2 text-left hover:bg-gray-50 transition-colors text-red-600"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    <span className="text-sm">Sign Out</span>
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={() => setShowWorkspace(true)}
-              className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
-            >
-              <Briefcase className="w-5 h-5 text-white" />
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Health Score & Improvement */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:order-none order-2">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
