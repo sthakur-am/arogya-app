@@ -12,7 +12,7 @@ import Navigation from './components/Navigation';
 import Workspace from './components/Workspace';
 import ChatAssistant from './components/ChatAssistant';
 import HealthUpdateModal from './components/HealthUpdateModal';
-import { MessageCircle, LogOut, Briefcase, Plus, Bell } from 'lucide-react';
+import { MessageCircle, LogOut, Briefcase, Plus, Bell, Settings } from 'lucide-react';
 
 const AppContent = () => {
   const { 
@@ -184,35 +184,13 @@ const AppContent = () => {
             {/* Mobile User Dropdown */}
             {showUserMenu && (
               <div className="absolute top-full left-4 right-4 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                {/* Notifications Section */}
-                <div className="px-4 py-3 border-b border-gray-100">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-900">Notifications</span>
-                    {unreadNotifications > 0 && (
-                      <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                        {unreadNotifications} new
-                      </span>
-                    )}
-                  </div>
-                  <div className="max-h-48 overflow-y-auto space-y-2">
-                    {unreadNotifications > 0 ? (
-                      notifications.filter(n => !n.read).slice(0, 3).map((notification) => (
-                        <div key={notification.id} className="p-2 bg-blue-50 rounded-lg">
-                          <p className="text-xs font-medium text-gray-900">{notification.title}</p>
-                          <p className="text-xs text-gray-600 truncate">{notification.message}</p>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-xs text-gray-500">No new notifications</p>
-                    )}
-                  </div>
-                  {unreadNotifications > 3 && (
-                    <button className="text-xs text-blue-600 hover:text-blue-700 mt-2">
-                      View all notifications
-                    </button>
-                  )}
-                </div>
-
+                <button
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full flex items-center space-x-2 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
+                >
+                  <Settings className="w-4 h-4 text-gray-600" />
+                  <span className="text-sm text-gray-700">Settings</span>
+                </button>
                 <button
                   onClick={() => {
                     logout();

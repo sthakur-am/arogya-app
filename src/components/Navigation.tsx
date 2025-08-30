@@ -9,7 +9,8 @@ import {
   ChevronDown,
   LogOut,
   MessageCircle,
-  Briefcase
+  Briefcase,
+  Cog
 } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
 
@@ -62,35 +63,13 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
               {/* User Dropdown */}
               {showUserMenu && (
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  {/* Notifications Section */}
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-gray-900">Notifications</span>
-                      {unreadNotifications.length > 0 && (
-                        <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                          {unreadNotifications.length} new
-                        </span>
-                      )}
-                    </div>
-                    <div className="max-h-48 overflow-y-auto space-y-2">
-                      {unreadNotifications.length > 0 ? (
-                        unreadNotifications.slice(0, 3).map((notification) => (
-                          <div key={notification.id} className="p-2 bg-blue-50 rounded-lg">
-                            <p className="text-xs font-medium text-gray-900">{notification.title}</p>
-                            <p className="text-xs text-gray-600 truncate">{notification.message}</p>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-xs text-gray-500">No new notifications</p>
-                      )}
-                    </div>
-                    {unreadNotifications.length > 3 && (
-                      <button className="text-xs text-blue-600 hover:text-blue-700 mt-2">
-                        View all notifications
-                      </button>
-                    )}
-                  </div>
-
+                  <button
+                    onClick={() => setShowUserMenu(false)}
+                    className="w-full flex items-center space-x-2 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
+                  >
+                    <Cog className="w-4 h-4 text-gray-600" />
+                    <span className="text-sm text-gray-700">Settings</span>
+                  </button>
                   <button
                     onClick={() => {
                       logout();
