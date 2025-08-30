@@ -58,9 +58,9 @@ const Dashboard = () => {
   const notificationCount = unreadNotifications.length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 md:order-none order-3">
       {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white md:order-none order-1">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold mb-2">
@@ -164,7 +164,7 @@ const Dashboard = () => {
       </div>
 
       {/* Health Score & Improvement */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:order-none order-2">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Health Score</h2>

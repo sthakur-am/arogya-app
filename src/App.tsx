@@ -54,14 +54,14 @@ const AppContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col md:block">
       <Navigation 
         activeTab={activeTab} 
         onTabChange={setActiveTab}
         notificationCount={unreadNotifications}
       />
       
-      <main className="md:ml-64">
+      <main className="md:ml-64 flex-1 pb-20 md:pb-0 order-2">
         {renderActiveTab()}
       </main>
 
