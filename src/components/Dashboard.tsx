@@ -12,7 +12,7 @@ import {
 import { useAppContext } from '../contexts/AppContext';
 
 const Dashboard = () => {
-  const { user, healthTasks, healthEvents } = useAppContext();
+  const { user, healthTasks, healthEvents, notifications } = useAppContext();
   const [selectedView, setSelectedView] = useState<'day' | 'week' | 'month'>('week');
 
   const healthScoreChange = +12; // Mock improvement
