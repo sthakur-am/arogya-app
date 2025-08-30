@@ -75,15 +75,13 @@ const Dashboard = () => {
             <div className="relative">
               <button
                 onClick={() => setShowUserMenu(!showUserMenu)}
-                className="relative flex items-center space-x-2 px-3 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+                className="relative p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
               >
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-medium text-sm">
                     {user?.name?.charAt(0) || 'U'}
                   </span>
                 </div>
-                <span className="text-white font-medium">{user?.name?.split(' ')[0]}</span>
-                <ChevronDown className={`w-4 h-4 text-white transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
                 {notificationCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                     {notificationCount > 9 ? '9+' : notificationCount}
@@ -154,10 +152,9 @@ const Dashboard = () => {
 
             <button
               onClick={() => setShowWorkspace(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
+              className="p-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors"
             >
               <Briefcase className="w-5 h-5 text-white" />
-              <span className="text-white font-medium">Workspace</span>
             </button>
           </div>
         </div>
