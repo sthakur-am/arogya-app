@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AppProvider, useAppContext } from './contexts/AppContext';
+import { SupabaseProvider } from './contexts/SupabaseContext';
 import LoginSignup from './components/LoginSignup';
 import SignupFlow from './components/SignupFlow';
 import EmotionSelector from './components/EmotionSelector';
@@ -218,9 +219,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <AppProvider>
-      <AppContent />
-    </AppProvider>
+    <SupabaseProvider>
+      <AppProvider>
+        <AppContent />
+      </AppProvider>
+    </SupabaseProvider>
   );
 };
 

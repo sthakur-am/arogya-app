@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Plus, Pill, Syringe, FileText, Heart, Activity, Calendar } from 'lucide-react';
-import { useAppContext } from '../contexts/AppContext';
+import { useSupabaseContext } from '../contexts/SupabaseContext';
 
 interface HealthUpdateModalProps {
   isOpen: boolean;
@@ -8,10 +8,18 @@ interface HealthUpdateModalProps {
 }
 
 const HealthUpdateModal = ({ isOpen, onClose }: HealthUpdateModalProps) => {
-  const { user } = useAppContext();
+  const { 
+    createMedication, 
+    createHealthRecord, 
+    createImmunization, 
+    createVitals, 
+    createExerciseLog, 
+    createAppointment 
+  } = useSupabaseContext();
   const [step, setStep] = useState<'select' | 'form'>('select');
   const [selectedType, setSelectedType] = useState<string>('');
   const [formData, setFormData] = useState<any>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const updateTypes = [
     {
@@ -66,12 +74,100 @@ const HealthUpdateModal = ({ isOpen, onClose }: HealthUpdateModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would save to the database
-    console.log('Health update submitted:', { type: selectedType, data: formData });
-    onClose();
-    setStep('select');
-    setSelectedType('');
-    setFormData({});
+    handleSaveToDatabase();
+  };
+
+  const handleSaveToDatabase = async () => {
+    setIsSubmitting(true);
+    
+    try {
+      let result;
+      
+      switch (selectedType) {
+        case 'medication':
+          result = await createMedication({
+            name: formData.name,
+            dosage: formData.dosage,
+            frequency: formData.frequency,
+            start_date: formData.startDate,
+            prescribing_doctor: formData.doctor,
+            notes: formData.notes
+          });
+          break;
+          
+        case 'immunization':
+          result = await createImmunization({
+            vaccine_name: formData.name,
+            administered_date: formData.date,
+            provider: formData.provider,
+            notes: formData.notes
+          });
+          break;
+          
+        case 'vitals':
+          result = await createVitals({
+            weight: formData.weight,
+            blood_pressure_systolic: formData.bloodPressure ? parseInt(formData.bloodPressure.split('/')[0]) : null,
+            blood_pressure_diastolic: formData.bloodPressure ? parseInt(formData.bloodPressure.split('/')[1]) : null,
+            heart_rate: formData.heartRate ? parseInt(formData.heartRate.replace(' bpm', '')) : null,
+            temperature: formData.temperature ? parseFloat(formData.temperature.replace('°F', '')) : null,
+            recorded_date: formData.date,
+            notes: formData.notes
+          });
+          break;
+          
+        case 'exercise':
+          result = await createExerciseLog({
+            activity_type: formData.type,
+            duration_minutes: parseInt(formData.duration),
+            intensity: formData.intensity,
+            exercise_date: formData.date,
+            notes: formData.notes
+          });
+          break;
+          
+        case 'appointment':
+          const appointmentDateTime = new Date(`${formData.date}T${formData.time}`).toISOString();
+          result = await createAppointment({
+            title: `${formData.type} - ${formData.provider}`,
+            description: formData.notes,
+            appointment_date: appointmentDateTime,
+            type: formData.type.toLowerCase().replace(' ', '-'),
+            location: formData.provider,
+            notes: formData.notes
+          });
+          break;
+          
+        case 'record':
+          result = await createHealthRecord({
+            type: formData.type,
+            title: formData.title,
+            description: formData.description,
+            date: formData.date,
+            provider: formData.provider
+          });
+          break;
+          
+        default:
+          throw new Error('Unknown update type');
+      }
+      
+      if (result?.error) {
+        throw result.error;
+      }
+      
+      // Success - close modal and reset
+      onClose();
+      setStep('select');
+      setSelectedType('');
+      setFormData({});
+      
+    } catch (error) {
+      console.error('Error saving health update:', error);
+      alert('Failed to save health update. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBack = () => {
@@ -504,14 +600,16 @@ const HealthUpdateModal = ({ isOpen, onClose }: HealthUpdateModalProps) => {
                   type="button"
                   onClick={handleBack}
                   className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  disabled={isSubmitting}
                 >
                   Back
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                  disabled={isSubmitting}
                 >
-                  Save Update
+                  {isSubmitting ? 'Saving...' : 'Save Update'}
                 </button>
               </div>
             </form>
