@@ -101,41 +101,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
                       className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
                     >
                       <Cog className="w-4 h-4 text-gray-600" />
-                      <span className="text-sm text-gray-700">Settings</span>
-                    </button>
-                    <div className="border-t border-gray-100 mt-2 pt-2">
-                      <button
-                        onClick={() => {
-                          logout();
-                          setShowUserMenu(false);
-                        }}
-                        className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-red-50 transition-colors text-red-600"
-                      >
-                        <LogOut className="w-4 h-4" />
-                        <span className="text-sm font-medium">Sign Out</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setShowUserMenu(false);
-                      }}
-                      className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-red-50 transition-colors text-red-600"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span className="text-sm font-medium">Sign Out</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          
           {/* Navigation Menu */}
           <div className="flex-1 p-6">
             <div className="space-y-2">
