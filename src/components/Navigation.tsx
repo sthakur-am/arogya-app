@@ -61,21 +61,23 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
                   <ChevronDown className="w-4 h-4 text-gray-400" />
                 </div>
                 
-                {/* Health Info Grid */}
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <p className="text-xs text-gray-500 mb-1">Age</p>
-                    <p className="font-semibold text-gray-900 text-sm">{user?.age || 'N/A'}</p>
+                {/* Health Info Grid - Only show when expanded */}
+                {showUserMenu && (
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div className="bg-gray-50 rounded-lg p-2">
+                      <p className="text-xs text-gray-500 mb-1">Age</p>
+                      <p className="font-semibold text-gray-900 text-sm">{user?.age || 'N/A'}</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-2">
+                      <p className="text-xs text-gray-500 mb-1">Sex</p>
+                      <p className="font-semibold text-gray-900 text-sm capitalize">{user?.sex || 'N/A'}</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-2">
+                      <p className="text-xs text-gray-500 mb-1">Blood Type</p>
+                      <p className="font-semibold text-gray-900 text-sm">{user?.vitals?.bloodType || 'N/A'}</p>
+                    </div>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <p className="text-xs text-gray-500 mb-1">Sex</p>
-                    <p className="font-semibold text-gray-900 text-sm capitalize">{user?.sex || 'N/A'}</p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <p className="text-xs text-gray-500 mb-1">Blood Type</p>
-                    <p className="font-semibold text-gray-900 text-sm">{user?.vitals?.bloodType || 'N/A'}</p>
-                  </div>
-                </div>
+                )}
               </button>
 
               {/* User Dropdown */}
