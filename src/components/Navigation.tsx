@@ -109,6 +109,17 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
                       <Cog className="w-4 h-4 text-gray-600" />
                       <span className="text-sm text-gray-700">Settings</span>
                     </button>
+                    <div className="border-t border-gray-100 my-1"></div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setShowUserMenu(false);
+                      }}
+                      className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-red-50 transition-colors text-red-600"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span className="text-sm">Sign Out</span>
+                    </button>
                   </div>
                 </div>
               )}
