@@ -7,6 +7,7 @@ import EmotionSelector from './components/EmotionSelector';
 import Dashboard from './components/Dashboard';
 import Health from './components/Health';
 import Profile from './components/Profile';
+import Program from './components/Program';
 import Network from './components/Network';
 import Services from './components/Services';
 import Navigation from './components/Navigation';
@@ -49,6 +50,8 @@ const AppContent = () => {
         return <Dashboard />;
       case 'health':
         return <Health />;
+      case 'program':
+        return <Program />;
       case 'profile':
         return <Profile />;
       case 'network':

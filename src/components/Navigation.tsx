@@ -31,7 +31,7 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
   const tabs = [
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
     { id: 'health', name: 'Health', icon: Heart },
-    { id: 'profile', name: 'Profile', icon: User },
+    { id: 'program', name: 'Program', icon: User },
     { id: 'network', name: 'Network', icon: Users },
     { id: 'services', name: 'Services', icon: Settings },
   ];

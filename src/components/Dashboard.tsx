@@ -101,13 +101,13 @@ const Dashboard = () => {
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">This Week's Progress</h2>
+            <h2 className="text-lg font-semibold text-gray-900">Program Progress</h2>
             <Activity className="w-5 h-5 text-green-600" />
           </div>
           
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Exercise Goals</span>
+              <span className="text-sm text-gray-600">Youth Health Program</span>
               <div className="flex items-center">
                 <div className="w-20 h-2 bg-gray-200 rounded-full mr-2">
                   <div className="w-3/4 h-2 bg-green-500 rounded-full"></div>
@@ -117,22 +117,22 @@ const Dashboard = () => {
             </div>
             
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Medication Adherence</span>
+              <span className="text-sm text-gray-600">Pregnancy Care Program</span>
               <div className="flex items-center">
                 <div className="w-20 h-2 bg-gray-200 rounded-full mr-2">
-                  <div className="w-full h-2 bg-blue-500 rounded-full"></div>
+                  <div className="w-1/3 h-2 bg-pink-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-900">100%</span>
+                <span className="text-sm font-medium text-gray-900">33%</span>
               </div>
             </div>
             
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Sleep Quality</span>
+              <span className="text-sm text-gray-600">Senior Care Program</span>
               <div className="flex items-center">
                 <div className="w-20 h-2 bg-gray-200 rounded-full mr-2">
-                  <div className="w-4/5 h-2 bg-purple-500 rounded-full"></div>
+                  <div className="w-0 h-2 bg-blue-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-900">80%</span>
+                <span className="text-sm font-medium text-gray-900">0%</span>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ const Dashboard = () => {
           <div className="mt-4 pt-4 border-t border-gray-100">
             <div className="flex items-center text-green-600">
               <TrendingUp className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">+{healthScoreChange} points improvement</span>
+              <span className="text-sm font-medium">Overall program progress improving</span>
             </div>
           </div>
         </div>
