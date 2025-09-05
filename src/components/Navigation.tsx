@@ -89,25 +89,28 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50">
                   <div className="py-2">
                     <button
-                      onClick={() => setShowUserMenu(false)}
+                      onClick={() => {
+                        onTabChange('profile');
+                        setShowUserMenu(false);
+                      }}
                       className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
                     >
                       <UserCircle className="w-4 h-4 text-gray-600" />
-                      <span className="text-sm text-gray-700">View Profile</span>
+                      <span className="text-sm text-gray-700">Profile</span>
                     </button>
                     <button
                       onClick={() => setShowUserMenu(false)}
                       className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
                     >
-                      <Edit3 className="w-4 h-4 text-gray-600" />
-                      <span className="text-sm text-gray-700">Edit Profile</span>
+                      <Settings className="w-4 h-4 text-gray-600" />
+                      <span className="text-sm text-gray-700">Privacy & Security</span>
                     </button>
                     <button
                       onClick={() => setShowUserMenu(false)}
                       className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
                     >
                       <Cog className="w-4 h-4 text-gray-600" />
-                      <span className="text-sm text-gray-700">Settings</span>
+                      <span className="text-sm text-gray-700">Preferences</span>
                     </button>
                     <div className="border-t border-gray-100 my-1"></div>
                     <button
