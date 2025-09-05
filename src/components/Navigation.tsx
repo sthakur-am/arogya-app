@@ -101,6 +101,14 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
                       className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
                     >
                       <Cog className="w-4 h-4 text-gray-600" />
+                      <span className="text-sm text-gray-700">Settings</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
           {/* Navigation Menu */}
           <div className="flex-1 p-6">
             <div className="space-y-2">
@@ -131,7 +139,6 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
               <p className="text-sm text-blue-100 mb-4">
                 Your personalized healthcare companion
               </p>
-        
             </div>
           </div>
         </div>
