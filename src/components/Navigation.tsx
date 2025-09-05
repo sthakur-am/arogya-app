@@ -10,7 +10,9 @@ import {
   LogOut,
   MessageCircle,
   Briefcase,
-  Cog
+  Cog,
+  Edit3,
+  UserCircle
 } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
 
@@ -62,24 +64,86 @@ const Navigation = ({ activeTab, onTabChange, notificationCount = 0 }: Navigatio
 
               {/* User Dropdown */}
               {showUserMenu && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <button
-                    onClick={() => setShowUserMenu(false)}
-                    className="w-full flex items-center space-x-2 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
-                  >
-                    <Cog className="w-4 h-4 text-gray-600" />
-                    <span className="text-sm text-gray-700">Settings</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      logout();
-                      setShowUserMenu(false);
-                    }}
-                    className="w-full flex items-center space-x-2 px-4 py-2 text-left hover:bg-gray-50 transition-colors text-red-600"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    <span className="text-sm">Sign Out</span>
-                  </button>
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50">
+                  {/* User Health Info Card */}
+                  <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">
+                          {user?.name?.charAt(0) || 'U'}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">{user?.name}</h3>
+                        <p className="text-sm text-gray-600">{user?.location}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Health Info Grid */}
+                    <div className="grid grid-cols-3 gap-3 text-center">
+                      <div className="bg-white/60 rounded-lg p-2">
+                        <p className="text-xs text-gray-500 mb-1">Age</p>
+                        <p className="font-semibold text-gray-900">{user?.age || 'N/A'}</p>
+                      </div>
+                      <div className="bg-white/60 rounded-lg p-2">
+                        <p className="text-xs text-gray-500 mb-1">Sex</p>
+                        <p className="font-semibold text-gray-900 capitalize">{user?.sex || 'N/A'}</p>
+                      </div>
+                      <div className="bg-white/60 rounded-lg p-2">
+                        <p className="text-xs text-gray-500 mb-1">Blood Type</p>
+                        <p className="font-semibold text-gray-900">{user?.vitals?.bloodType || 'N/A'}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Profile Menu Section */}
+                  <div className="py-2">
+                    <div className="px-3 py-1">
+                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Profile</p>
+                    </div>
+                    <button
+                      onClick={() => setShowUserMenu(false)}
+                      className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <UserCircle className="w-4 h-4 text-gray-600" />
+                      <span className="text-sm text-gray-700">View Profile</span>
+                    </button>
+                    <button
+                      onClick={() => setShowUserMenu(false)}
+                      className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <Edit3 className="w-4 h-4 text-gray-600" />
+                      <span className="text-sm text-gray-700">Edit Profile</span>
+                    </button>
+                  </div>
+
+                  {/* Settings Menu Section */}
+                  <div className="py-2 border-t border-gray-100">
+                    <div className="px-3 py-1">
+                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Settings</p>
+                    </div>
+                    <button
+                      onClick={() => setShowUserMenu(false)}
+                      className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <Cog className="w-4 h-4 text-gray-600" />
+                      <span className="text-sm text-gray-700">Preferences</span>
+                    </button>
+                  </div>
+
+                  {/* Logout Section */}
+                  <div className="py-2 border-t border-gray-100">
+                    <button
+                      onClick={() => {
+                        logout();
+                        setShowUserMenu(false);
+                      }}
+                      className="w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-red-50 transition-colors text-red-600"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span className="text-sm font-medium">Sign Out</span>
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
