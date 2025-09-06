@@ -8,7 +8,17 @@ import {
   TrendingUp,
   Plus,
   FileText,
-  Clock
+  Clock,
+  Stethoscope,
+  Users,
+  Home,
+  AlertTriangle,
+  CheckCircle,
+  Target,
+  BarChart3,
+  Thermometer,
+  Droplets,
+  Zap
 } from 'lucide-react';
 
 const Health = () => {
@@ -22,64 +32,219 @@ const Health = () => {
     { id: 'records', name: 'Records', icon: FileText },
   ];
 
+  // Mock health data
+  const healthScore = 78;
+  const healthMeasures = {
+    generalHealth: {
+      name: 'General Health',
+      icon: Stethoscope,
+      score: 82,
+      color: 'green',
+      measures: [
+        { name: 'Blood Pressure', value: '120/80', status: 'good', target: '<140/90' },
+        { name: 'Heart Rate', value: '72 bpm', status: 'good', target: '60-100 bpm' },
+        { name: 'Temperature', value: '98.6°F', status: 'good', target: '97-99°F' },
+        { name: 'Weight', value: '175 lbs', status: 'good', target: '160-180 lbs' },
+        { name: 'BMI', value: '24.2', status: 'good', target: '18.5-24.9' }
+      ]
+    },
+    clinicalHealth: {
+      name: 'Clinical Health',
+      icon: FileText,
+      score: 75,
+      color: 'blue',
+      measures: [
+        { name: 'Cholesterol', value: '180 mg/dL', status: 'good', target: '<200 mg/dL' },
+        { name: 'Blood Sugar', value: '95 mg/dL', status: 'good', target: '70-100 mg/dL' },
+        { name: 'HbA1c', value: '5.2%', status: 'good', target: '<5.7%' },
+        { name: 'Vitamin D', value: '32 ng/mL', status: 'attention', target: '>30 ng/mL' },
+        { name: 'Iron', value: '85 μg/dL', status: 'good', target: '60-170 μg/dL' }
+      ]
+    },
+    lifestyle: {
+      name: 'Lifestyle',
+      icon: Activity,
+      score: 68,
+      color: 'purple',
+      measures: [
+        { name: 'Sleep Quality', value: '7.2 hrs', status: 'good', target: '7-9 hrs' },
+        { name: 'Physical Activity', value: '4 days/week', status: 'attention', target: '5+ days/week' },
+        { name: 'Nutrition Score', value: '72/100', status: 'good', target: '>70/100' },
+        { name: 'Hydration', value: '6 glasses', status: 'attention', target: '8+ glasses' },
+        { name: 'Stress Level', value: 'Moderate', status: 'attention', target: 'Low' }
+      ]
+    },
+    sf36: {
+      name: 'SF-36 Quality of Life',
+      icon: Heart,
+      score: 85,
+      color: 'red',
+      measures: [
+        { name: 'Physical Functioning', value: '90/100', status: 'excellent', target: '>80/100' },
+        { name: 'Mental Health', value: '82/100', status: 'good', target: '>70/100' },
+        { name: 'Social Functioning', value: '88/100', status: 'good', target: '>75/100' },
+        { name: 'Energy/Vitality', value: '75/100', status: 'good', target: '>70/100' },
+        { name: 'Pain Level', value: 'Minimal', status: 'excellent', target: 'None/Minimal' }
+      ]
+    },
+    sdoh: {
+      name: 'Social Determinants',
+      icon: Home,
+      score: 72,
+      color: 'orange',
+      measures: [
+        { name: 'Housing Stability', value: 'Stable', status: 'good', target: 'Stable' },
+        { name: 'Food Security', value: 'Secure', status: 'good', target: 'Secure' },
+        { name: 'Transportation', value: 'Available', status: 'good', target: 'Available' },
+        { name: 'Social Support', value: 'Strong', status: 'good', target: 'Strong' },
+        { name: 'Healthcare Access', value: 'Good', status: 'attention', target: 'Excellent' }
+      ]
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'excellent': return <CheckCircle className="w-4 h-4 text-green-600" />;
+      case 'good': return <CheckCircle className="w-4 h-4 text-green-500" />;
+      case 'attention': return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
+      case 'concern': return <AlertTriangle className="w-4 h-4 text-red-500" />;
+      default: return <Circle className="w-4 h-4 text-gray-400" />;
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'excellent': return 'bg-green-50 border-green-200';
+      case 'good': return 'bg-green-50 border-green-200';
+      case 'attention': return 'bg-yellow-50 border-yellow-200';
+      case 'concern': return 'bg-red-50 border-red-200';
+      default: return 'bg-gray-50 border-gray-200';
+    }
+  };
+
+  const keyHealthConcerns = [
+    { measure: 'Physical Activity', category: 'Lifestyle', status: 'attention', recommendation: 'Increase to 5+ days per week' },
+    { measure: 'Hydration', category: 'Lifestyle', status: 'attention', recommendation: 'Drink 2 more glasses daily' },
+    { measure: 'Vitamin D', category: 'Clinical Health', status: 'attention', recommendation: 'Consider supplementation' },
+    { measure: 'Healthcare Access', category: 'Social Determinants', status: 'attention', recommendation: 'Explore additional options' }
+  ];
   const renderOverview = () => (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="bg-red-100 p-3 rounded-lg">
-              <Heart className="w-6 h-6 text-red-600" />
+      {/* Overall Health Score */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold text-gray-900">Health Score Breakdown</h2>
+          <div className="flex items-center space-x-2">
+            <span className="text-3xl font-bold text-gray-900">{healthScore}</span>
+            <div className="text-sm text-gray-600">
+              <div className="flex items-center text-green-600">
+                <TrendingUp className="w-4 h-4 mr-1" />
+                <span>+5 this month</span>
+              </div>
             </div>
-            <span className="text-2xl font-bold text-gray-900">72</span>
           </div>
-          <h3 className="font-medium text-gray-900">Heart Rate</h3>
-          <p className="text-sm text-gray-600">Average BPM</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="bg-blue-100 p-3 rounded-lg">
-              <Activity className="w-6 h-6 text-blue-600" />
+        {/* Health Measure Categories */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {Object.entries(healthMeasures).map(([key, category]) => (
+            <div key={key} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-2">
+                  <div className={`bg-${category.color}-100 p-2 rounded-lg`}>
+                    <category.icon className={`w-5 h-5 text-${category.color}-600`} />
+                  </div>
+                  <h3 className="font-medium text-gray-900">{category.name}</h3>
+                </div>
+                <span className="text-lg font-bold text-gray-900">{category.score}</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className={`bg-${category.color}-500 h-2 rounded-full transition-all duration-300`}
+                  style={{ width: `${category.score}%` }}
+                ></div>
+              </div>
             </div>
-            <span className="text-2xl font-bold text-gray-900">8.2k</span>
-          </div>
-          <h3 className="font-medium text-gray-900">Steps</h3>
-          <p className="text-sm text-gray-600">Today's count</p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="bg-purple-100 p-3 rounded-lg">
-              <Moon className="w-6 h-6 text-purple-600" />
-            </div>
-            <span className="text-2xl font-bold text-gray-900">7.5h</span>
-          </div>
-          <h3 className="font-medium text-gray-900">Sleep</h3>
-          <p className="text-sm text-gray-600">Last night</p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="bg-green-100 p-3 rounded-lg">
-              <TrendingUp className="w-6 h-6 text-green-600" />
-            </div>
-            <span className="text-2xl font-bold text-gray-900">78</span>
-          </div>
-          <h3 className="font-medium text-gray-900">Health Score</h3>
-          <p className="text-sm text-gray-600">Overall rating</p>
+          ))}
         </div>
       </div>
 
+      {/* Key Health Concerns */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-900">Key Health Areas to Focus On</h2>
+          <AlertTriangle className="w-5 h-5 text-yellow-500" />
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {keyHealthConcerns.map((concern, index) => (
+            <div key={index} className={`p-4 rounded-lg border ${getStatusColor(concern.status)}`}>
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center space-x-2">
+                  {getStatusIcon(concern.status)}
+                  <h3 className="font-medium text-gray-900">{concern.measure}</h3>
+                </div>
+                <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full">
+                  {concern.category}
+                </span>
+              </div>
+              <p className="text-sm text-gray-600">{concern.recommendation}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Detailed Health Measures */}
+      <div className="space-y-6">
+        {Object.entries(healthMeasures).map(([key, category]) => (
+          <div key={key} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-3">
+                <div className={`bg-${category.color}-100 p-3 rounded-lg`}>
+                  <category.icon className={`w-6 h-6 text-${category.color}-600`} />
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-900">{category.name}</h2>
+                  <p className="text-sm text-gray-600">Score: {category.score}/100</p>
+                </div>
+              </div>
+              <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                View Details
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {category.measures.map((measure, index) => (
+                <div key={index} className={`p-4 rounded-lg border ${getStatusColor(measure.status)}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-medium text-gray-900">{measure.name}</h3>
+                    {getStatusIcon(measure.status)}
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between">
+                      <span className="text-sm text-gray-600">Current:</span>
+                      <span className="text-sm font-medium text-gray-900">{measure.value}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-sm text-gray-600">Target:</span>
+                      <span className="text-sm text-gray-700">{measure.target}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Quick Actions */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Health Actions</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { name: 'Log Meal', icon: Utensils, color: 'green' },
-            { name: 'Record Sleep', icon: Moon, color: 'purple' },
-            { name: 'Add Exercise', icon: Activity, color: 'blue' },
-            { name: 'Health Check', icon: Heart, color: 'red' }
+            { name: 'Log Vitals', icon: Thermometer, color: 'red' },
+            { name: 'Record Activity', icon: Activity, color: 'blue' },
+            { name: 'Track Sleep', icon: Moon, color: 'purple' },
+            { name: 'Log Meal', icon: Utensils, color: 'green' }
           ].map((action) => (
             <button
               key={action.name}
