@@ -92,6 +92,21 @@ const Dashboard = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center mt-6">
                   <span className="text-3xl font-bold text-gray-900">{user?.healthScore || 78}</span>
+                  <div className={`flex items-center justify-center mt-1 ${
+                    healthScoreChange > 0 ? 'text-green-600' :
+                    healthScoreChange === 0 ? 'text-yellow-600' : 'text-red-600'
+                  }`}>
+                    <svg 
+                      className="w-3 h-3 mr-1" 
+                      fill="currentColor" 
+                      viewBox="0 0 12 12"
+                    >
+                      <path d="M6 2l4 8H2l4-8z" />
+                    </svg>
+                    <span className="text-sm font-medium">
+                      {healthScoreChange > 0 ? '+' : ''}{healthScoreChange}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
