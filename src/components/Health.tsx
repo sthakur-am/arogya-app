@@ -130,42 +130,160 @@ const Health = () => {
   ];
   const renderOverview = () => (
     <div className="space-y-6">
-      {/* Overall Health Score */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">Health Score Breakdown</h2>
-          <div className="flex items-center space-x-2">
-            <span className="text-3xl font-bold text-gray-900">{healthScore}</span>
-            <div className="text-sm text-gray-600">
-              <div className="flex items-center text-green-600">
-                <TrendingUp className="w-4 h-4 mr-1" />
-                <span>+5 this month</span>
+      {/* Top Cards Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Concentric Circles Health Score */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold text-gray-900">Health Score Overview</h2>
+            <div className="flex items-center text-green-600">
+              <TrendingUp className="w-4 h-4 mr-1" />
+              <span className="text-sm font-medium">+5 this month</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-center">
+            <div className="relative w-80 h-80">
+              {/* Concentric Circles */}
+              <svg className="w-full h-full transform -rotate-90" viewBox="0 0 320 320">
+                {/* Background circles */}
+                <circle cx="160" cy="160" r="140" fill="none" stroke="#f3f4f6" strokeWidth="20" />
+                <circle cx="160" cy="160" r="110" fill="none" stroke="#f3f4f6" strokeWidth="16" />
+                <circle cx="160" cy="160" r="85" fill="none" stroke="#f3f4f6" strokeWidth="12" />
+                <circle cx="160" cy="160" r="65" fill="none" stroke="#f3f4f6" strokeWidth="10" />
+                <circle cx="160" cy="160" r="48" fill="none" stroke="#f3f4f6" strokeWidth="8" />
+                
+                {/* Progress circles */}
+                {/* SF-36 (outermost) */}
+                <circle 
+                  cx="160" cy="160" r="140" 
+                  fill="none" 
+                  stroke="#ef4444" 
+                  strokeWidth="20"
+                  strokeDasharray={`${2 * Math.PI * 140}`}
+                  strokeDashoffset={`${2 * Math.PI * 140 * (1 - 85/100)}`}
+                  strokeLinecap="round"
+                />
+                {/* General Health */}
+                <circle 
+                  cx="160" cy="160" r="110" 
+                  fill="none" 
+                  stroke="#22c55e" 
+                  strokeWidth="16"
+                  strokeDasharray={`${2 * Math.PI * 110}`}
+                  strokeDashoffset={`${2 * Math.PI * 110 * (1 - 82/100)}`}
+                  strokeLinecap="round"
+                />
+                {/* Clinical Health */}
+                <circle 
+                  cx="160" cy="160" r="85" 
+                  fill="none" 
+                  stroke="#3b82f6" 
+                  strokeWidth="12"
+                  strokeDasharray={`${2 * Math.PI * 85}`}
+                  strokeDashoffset={`${2 * Math.PI * 85 * (1 - 75/100)}`}
+                  strokeLinecap="round"
+                />
+                {/* SDoH */}
+                <circle 
+                  cx="160" cy="160" r="65" 
+                  fill="none" 
+                  stroke="#f97316" 
+                  strokeWidth="10"
+                  strokeDasharray={`${2 * Math.PI * 65}`}
+                  strokeDashoffset={`${2 * Math.PI * 65 * (1 - 72/100)}`}
+                  strokeLinecap="round"
+                />
+                {/* Lifestyle (innermost) */}
+                <circle 
+                  cx="160" cy="160" r="48" 
+                  fill="none" 
+                  stroke="#8b5cf6" 
+                  strokeWidth="8"
+                  strokeDasharray={`${2 * Math.PI * 48}`}
+                  strokeDashoffset={`${2 * Math.PI * 48 * (1 - 68/100)}`}
+                  strokeLinecap="round"
+                />
+              </svg>
+              
+              {/* Center score */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-4xl font-bold text-gray-900">{healthScore}</span>
+                  <p className="text-sm text-gray-600 mt-1">Overall Score</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Health Measure Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-          {Object.entries(healthMeasures).map(([key, category]) => (
-            <div key={key} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center space-x-2">
-                  <div className={`bg-${category.color}-100 p-2 rounded-lg`}>
-                    <category.icon className={`w-5 h-5 text-${category.color}-600`} />
-                  </div>
-                  <h3 className="font-medium text-gray-900">{category.name}</h3>
-                </div>
-                <span className="text-lg font-bold text-gray-900">{category.score}</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div
-                  className={`bg-${category.color}-500 h-2 rounded-full transition-all duration-300`}
-                  style={{ width: `${category.score}%` }}
-                ></div>
-              </div>
+          
+          {/* Legend */}
+          <div className="grid grid-cols-2 gap-2 mt-6 text-sm">
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              <span className="text-gray-700">SF-36: 85</span>
             </div>
-          ))}
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="text-gray-700">General: 82</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              <span className="text-gray-700">Clinical: 75</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+              <span className="text-gray-700">SDoH: 72</span>
+            </div>
+            <div className="flex items-center space-x-2 col-span-2 justify-center">
+              <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+              <span className="text-gray-700">Lifestyle: 68</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Progress Tiles */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold text-gray-900">Category Progress</h2>
+            <BarChart3 className="w-5 h-5 text-blue-600" />
+          </div>
+          
+          <div className="space-y-4">
+            {Object.entries(healthMeasures).map(([key, category]) => (
+              <div key={key} className="border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-3">
+                    <div className={`bg-${category.color}-100 p-2 rounded-lg`}>
+                      <category.icon className={`w-4 h-4 text-${category.color}-600`} />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900">{category.name}</h3>
+                      <p className="text-xs text-gray-500">
+                        {category.measures.filter(m => m.status === 'attention' || m.status === 'concern').length} areas need attention
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-lg font-bold text-gray-900">{category.score}</span>
+                    <div className="flex items-center text-xs">
+                      <TrendingUp className="w-3 h-3 text-green-500 mr-1" />
+                      <span className="text-green-600">+{Math.floor(Math.random() * 5) + 1}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <div className="flex-1 bg-gray-200 rounded-full h-2">
+                    <div
+                      className={`bg-${category.color}-500 h-2 rounded-full transition-all duration-300`}
+                      style={{ width: `${category.score}%` }}
+                    ></div>
+                  </div>
+                  <span className="text-sm font-medium text-gray-600">{category.score}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
