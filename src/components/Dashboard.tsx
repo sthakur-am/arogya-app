@@ -139,45 +139,35 @@ const Dashboard = () => {
             <Activity className="w-5 h-5 text-green-600" />
           </div>
           
-          {/* Active Program */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="font-medium text-gray-900">Youth Health Program</h3>
-              <span className="text-2xl font-bold text-green-600">75%</span>
-            </div>
-            <div className="w-full h-3 bg-gray-200 rounded-full">
-              <div className="w-3/4 h-3 bg-green-500 rounded-full transition-all duration-500"></div>
-            </div>
-            <p className="text-sm text-gray-500 mt-2">Currently enrolled • 3 of 4 milestones completed</p>
-          </div>
-
-          {/* Other Programs */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <span className="text-sm text-gray-700">Pregnancy Care</span>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <span className="font-medium text-gray-900">Youth Health Program</span>
               <div className="flex items-center space-x-2">
-                <div className="w-12 h-2 bg-gray-200 rounded-full">
-                  <div className="w-1/3 h-2 bg-pink-400 rounded-full"></div>
+                <div className="w-16 h-2 bg-gray-200 rounded-full">
+                  <div className="w-3/4 h-2 bg-green-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-600 w-8">33%</span>
+                <span className="text-sm font-medium text-gray-900 w-10">75%</span>
               </div>
             </div>
             
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <span className="text-sm text-gray-700">Senior Care</span>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <span className="font-medium text-gray-900">Pregnancy Care Program</span>
               <div className="flex items-center space-x-2">
-                <div className="w-12 h-2 bg-gray-200 rounded-full">
-                  <div className="w-0 h-2 bg-blue-400 rounded-full"></div>
+                <div className="w-16 h-2 bg-gray-200 rounded-full">
+                  <div className="w-1/3 h-2 bg-pink-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-600 w-8">0%</span>
+                <span className="text-sm font-medium text-gray-900 w-10">33%</span>
               </div>
             </div>
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-gray-100">
-            <div className="flex items-center justify-center text-green-600">
-              <TrendingUp className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Making great progress</span>
+            
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <span className="font-medium text-gray-900">Senior Care Program</span>
+              <div className="flex items-center space-x-2">
+                <div className="w-16 h-2 bg-gray-200 rounded-full">
+                  <div className="w-1/5 h-2 bg-blue-500 rounded-full"></div>
+                </div>
+                <span className="text-sm font-medium text-gray-900 w-10">20%</span>
+              </div>
             </div>
           </div>
         </div>
