@@ -103,8 +103,8 @@ const Dashboard = () => {
                     >
                       <path d="M6 2l4 8H2l4-8z" />
                     </svg>
-                    <span className="text-sm font-medium">
-                      {healthScoreChange > 0 ? '+' : ''}{healthScoreChange}
+                    <span className="text-sm font-medium text-gray-700">
+                      {Math.abs(healthScoreChange)}
                     </span>
                   </div>
                 </div>
