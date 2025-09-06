@@ -92,13 +92,209 @@ const Dashboard = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center mt-6">
                   <span className="text-3xl font-bold text-gray-900">{user?.healthScore || 78}</span>
-                  <div className="text-xs text-gray-500">/ 100</div>
                 </div>
               </div>
             </div>
             
             {/* Min/Max labels */}
-            <div className="flex justify-between text-xs text-gray-500 mb-4 px-4">
+            <div className="flex justify-between text-xs text-gray-500 mb-4 absolute w-full -mt-2">
+              <span className="ml-5">0</span>
+              <span className="mr-5">100</span>
+            </div>
+          </div>
+          
+          <div className="text-center mt-4">
+            <p className="text-sm text-gray-600 mb-2">Overall Health</p>
+            <div className={`flex items-center justify-center ${
+              (user?.healthScore || 78) < 50 ? 'text-red-600' :
+              (user?.healthScore || 78) <= 70 ? 'text-yellow-600' : 'text-green-600'
+            }`}>
+              <TrendingUp className="w-4 h-4 mr-1" />
+              <span className="text-sm font-medium">
+                {(user?.healthScore || 78) < 50 ? 'Needs attention' :
+                 (user?.healthScore || 78) <= 70 ? 'Making progress' : 'Improving steadily'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-900">Program Progress</h2>
+          <Activity className="w-5 h-5 text-green-600" />
+        </div>
+        
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600">Youth Health Program</span>
+            <div className="flex items-center">
+              <div className="w-20 h-2 bg-gray-200 rounded-full mr-2">
+                <div className="w-3/4 h-2 bg-green-500 rounded-full"></div>
+              </div>
+              <span className="text-sm font-medium text-gray-900">75%</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600">Pregnancy Care Program</span>
+            <div className="flex items-center">
+              <div className="w-20 h-2 bg-gray-200 rounded-full mr-2">
+                <div className="w-1/3 h-2 bg-pink-500 rounded-full"></div>
+              </div>
+              <span className="text-sm font-medium text-gray-900">33%</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600">Senior Care Program</span>
+            <div className="flex items-center">
+              <div className="w-20 h-2 bg-gray-200 rounded-full mr-2">
+                <div className="w-0 h-2 bg-blue-500 rounded-full"></div>
+              </div>
+              <span className="text-sm font-medium text-gray-900">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <div className="flex items-center text-green-600">
+            <TrendingUp className="w-4 h-4 mr-2" />
+            <span className="text-sm font-medium">Overall program progress improving</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Health Tasks */}
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">Health Tasks</h2>
+        <div className="flex items-center text-sm text-gray-600">
+          <CheckSquare className="w-4 h-4 mr-1" />
+          {pendingTasks.length} pending
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        {healthTasks.slice(0, 3).map((task) => (
+          <div
+            key={task.id}
+            className={`p-4 rounded-lg border transition-colors hover:shadow-md ${getTaskStatusColor(task.status, task.priority)}`}
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center mb-2">
+                  <h3 className="font-medium text-gray-900 mr-2">{task.title}</h3>
+                  {task.priority === 'high' && (
+                    <span className="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded-full">
+                      High Priority
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 mb-2">{task.description}</p>
+                <div className="flex items-center text-xs text-gray-500">
+                  <Clock className="w-3 h-3 mr-1" />
+                  Due {formatDate(task.dueDate)}
+                </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-gray-400" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button className="mt-4 w-full py-2 text-center text-blue-600 hover:text-blue-700 font-medium text-sm">
+        View All Tasks
+      </button>
+    </div>
+
+    {/* Health Events Calendar */}
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">Upcoming Events</h2>
+        <div className="flex bg-gray-100 rounded-lg p-1">
+          {['day', 'week', 'month'].map((view) => (
+            <button
+              key={view}
+              onClick={() => setSelectedView(view as any)}
+              className={`px-3 py-1 text-sm font-medium rounded-md transition-colors capitalize ${
+                selectedView === view
+                  ? 'bg-white text-blue-600 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {view}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        {upcomingEvents.map((event) => (
+          <div key={event.id} className="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-lg mr-3">
+              {getEventTypeIcon(event.type)}
+            </div>
+            <div className="flex-1">
+              <h3 className="font-medium text-gray-900">{event.title}</h3>
+              <p className="text-sm text-gray-600">{event.description}</p>
+              <div className="flex items-center text-xs text-gray-500 mt-1">
+                <Calendar className="w-3 h-3 mr-1" />
+                {formatDate(event.date)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Recent Updates & Notifications */}
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-semibold text-gray-900">Recent Updates</h2>
+        <div className="flex items-center text-sm text-gray-600">
+          <Bell className="w-4 h-4 mr-1" />
+          {unreadNotifications.length} new
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        {notifications.slice(0, 3).map((notification) => (
+          <div
+            key={notification.id}
+            className={`p-4 rounded-lg border transition-colors ${
+              !notification.read 
+                ? 'bg-blue-50 border-blue-200' 
+                : 'bg-gray-50 border-gray-200'
+            }`}
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center mb-2">
+                  <h3 className="font-medium text-gray-900 mr-2">{notification.title}</h3>
+                  {!notification.read && (
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 mb-2">{notification.message}</p>
+                <div className="text-xs text-gray-500">
+                  {formatDate(notification.date)}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button className="mt-4 w-full py-2 text-center text-blue-600 hover:text-blue-700 font-medium text-sm">
+        View All Notifications
+      </button>
+    </div>
+  </div>
+);
+
+export default Dashboard;
               <span>0</span>
               <span>100</span>
             </div>
