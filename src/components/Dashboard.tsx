@@ -62,11 +62,11 @@ const Dashboard = () => {
           
           <div className="relative mb-6">
             {/* Health Score Dial */}
-            <div className="w-40 h-20 mx-auto mb-4 relative">
-              <svg className="w-40 h-20" viewBox="0 0 160 80">
+            <div className="w-40 h-24 mx-auto mb-4 relative">
+              <svg className="w-40 h-24" viewBox="0 0 160 100">
                 {/* Background arc */}
                 <path
-                  d="M 20 60 A 60 60 0 0 1 140 60"
+                  d="M 20 80 A 60 60 0 0 1 140 80"
                   stroke="currentColor"
                   strokeWidth="8"
                   fill="none"
@@ -74,7 +74,7 @@ const Dashboard = () => {
                 />
                 {/* Progress arc */}
                 <path
-                  d="M 20 60 A 60 60 0 0 1 140 60"
+                  d="M 20 80 A 60 60 0 0 1 140 80"
                   stroke="currentColor"
                   strokeWidth="8"
                   fill="none"
@@ -90,7 +90,7 @@ const Dashboard = () => {
               
               {/* Score display */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center mt-4">
+                <div className="text-center mt-6">
                   <span className="text-3xl font-bold text-gray-900">{user?.healthScore || 78}</span>
                   <div className="text-xs text-gray-500">/ 100</div>
                 </div>
@@ -98,9 +98,9 @@ const Dashboard = () => {
             </div>
             
             {/* Min/Max labels */}
-            <div className="flex justify-between text-xs text-gray-500 mb-4 px-2">
-              <span>Min: 0</span>
-              <span>Max: 100</span>
+            <div className="flex justify-between text-xs text-gray-500 mb-4 px-4">
+              <span>0</span>
+              <span>100</span>
             </div>
             
             <div className="text-center">
