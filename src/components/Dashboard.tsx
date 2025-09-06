@@ -76,7 +76,7 @@ const Dashboard = () => {
                 <path
                   d="M 20 80 A 60 60 0 0 1 140 80"
                   stroke="currentColor"
-                  strokeWidth="8"
+                  strokeWidth="10"
                   fill="none"
                   strokeDasharray="188.5"
                   strokeDashoffset={188.5 - (188.5 * (user?.healthScore || 78) / 100)}
