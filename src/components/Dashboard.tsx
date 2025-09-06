@@ -62,8 +62,8 @@ const Dashboard = () => {
           
           <div className="relative mb-6">
             {/* Health Score Dial */}
-            <div className="w-48 h-28 mx-auto mb-4 relative flex flex-col items-center">
-              <svg className="w-48 h-28" viewBox="0 0 192 112">
+            <div className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-28 sm:h-32 md:h-36 lg:h-40 xl:h-44 mx-auto mb-4 relative flex flex-col items-center">
+              <svg className="w-full h-full" viewBox="0 0 192 112">
                 {/* Background arc */}
                 <path
                   d="M 16 96 A 80 80 0 0 1 176 96"
@@ -91,19 +91,19 @@ const Dashboard = () => {
               {/* Score display */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center mt-6">
-                  <span className="text-3xl font-bold text-gray-900">{user?.healthScore || 78}</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900">{user?.healthScore || 78}</span>
                   <div className={`flex items-center justify-center mt-1 ${
                     healthScoreChange > 0 ? 'text-green-600' :
                     healthScoreChange === 0 ? 'text-yellow-600' : 'text-red-600'
                   }`}>
                     <svg 
-                      className="w-3 h-3 mr-1" 
+                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 mr-1" 
                       fill="currentColor" 
                       viewBox="0 0 12 12"
                     >
                       <path d="M6 2l4 8H2l4-8z" />
                     </svg>
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-gray-700">
                       {Math.abs(healthScoreChange)}
                     </span>
                   </div>
@@ -112,7 +112,7 @@ const Dashboard = () => {
             </div>
             
             {/* Min/Max labels */}
-            <div className="flex justify-between text-xs text-gray-500 mb-4 w-48 mx-auto -mt-4">
+            <div className="flex justify-between text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-500 mb-4 w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 mx-auto -mt-4">
               <span className="ml-3">0</span>
               <span className="text-right">100</span>
             </div>
