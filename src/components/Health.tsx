@@ -143,71 +143,71 @@ const Health = () => {
           </div>
           
           <div className="flex items-center justify-center">
-            <div className="relative w-80 h-80">
+            <div className="relative w-80 h-48">
               {/* Concentric Circles */}
-              <svg className="w-full h-full transform rotate-180" viewBox="0 0 320 320">
+              <svg className="w-full h-full" viewBox="0 0 320 192">
                 {/* Background circles */}
-                <path d="M 20 160 A 140 140 0 0 1 300 160" stroke="#f3f4f6" strokeWidth="20" fill="none" />
-                <path d="M 50 160 A 110 110 0 0 1 270 160" stroke="#f3f4f6" strokeWidth="16" fill="none" />
-                <path d="M 75 160 A 85 85 0 0 1 245 160" stroke="#f3f4f6" strokeWidth="12" fill="none" />
-                <path d="M 95 160 A 65 65 0 0 1 225 160" stroke="#f3f4f6" strokeWidth="10" fill="none" />
-                <path d="M 112 160 A 48 48 0 0 1 208 160" stroke="#f3f4f6" strokeWidth="8" fill="none" />
+                <path d="M 20 172 A 140 140 0 0 1 300 172" stroke="#f3f4f6" strokeWidth="20" fill="none" />
+                <path d="M 50 172 A 110 110 0 0 1 270 172" stroke="#f3f4f6" strokeWidth="16" fill="none" />
+                <path d="M 75 172 A 85 85 0 0 1 245 172" stroke="#f3f4f6" strokeWidth="12" fill="none" />
+                <path d="M 95 172 A 65 65 0 0 1 225 172" stroke="#f3f4f6" strokeWidth="10" fill="none" />
+                <path d="M 112 172 A 48 48 0 0 1 208 172" stroke="#f3f4f6" strokeWidth="8" fill="none" />
                 
                 {/* Progress circles */}
                 {/* SF-36 (outermost) */}
                 <path
-                  d="M 20 160 A 140 140 0 0 1 300 160"
+                  d="M 20 172 A 140 140 0 0 1 300 172"
                   fill="none" 
                   stroke="#ef4444" 
                   strokeWidth="20"
-                  strokeDasharray={`${Math.PI * 140}`}
+                  strokeDasharray={`${Math.PI * 140} ${Math.PI * 140}`}
                   strokeDashoffset={`${Math.PI * 140 * (1 - 85/100)}`}
                   strokeLinecap="round"
                 />
                 {/* General Health */}
                 <path
-                  d="M 50 160 A 110 110 0 0 1 270 160"
+                  d="M 50 172 A 110 110 0 0 1 270 172"
                   fill="none" 
                   stroke="#22c55e" 
                   strokeWidth="16"
-                  strokeDasharray={`${Math.PI * 110}`}
+                  strokeDasharray={`${Math.PI * 110} ${Math.PI * 110}`}
                   strokeDashoffset={`${Math.PI * 110 * (1 - 82/100)}`}
                   strokeLinecap="round"
                 />
                 {/* Clinical Health */}
                 <path
-                  d="M 75 160 A 85 85 0 0 1 245 160"
+                  d="M 75 172 A 85 85 0 0 1 245 172"
                   fill="none" 
                   stroke="#3b82f6" 
                   strokeWidth="12"
-                  strokeDasharray={`${Math.PI * 85}`}
+                  strokeDasharray={`${Math.PI * 85} ${Math.PI * 85}`}
                   strokeDashoffset={`${Math.PI * 85 * (1 - 75/100)}`}
                   strokeLinecap="round"
                 />
                 {/* SDoH */}
                 <path
-                  d="M 95 160 A 65 65 0 0 1 225 160"
+                  d="M 95 172 A 65 65 0 0 1 225 172"
                   fill="none" 
                   stroke="#f97316" 
                   strokeWidth="10"
-                  strokeDasharray={`${Math.PI * 65}`}
+                  strokeDasharray={`${Math.PI * 65} ${Math.PI * 65}`}
                   strokeDashoffset={`${Math.PI * 65 * (1 - 72/100)}`}
                   strokeLinecap="round"
                 />
                 {/* Lifestyle (innermost) */}
                 <path
-                  d="M 112 160 A 48 48 0 0 1 208 160"
+                  d="M 112 172 A 48 48 0 0 1 208 172"
                   fill="none" 
                   stroke="#8b5cf6" 
                   strokeWidth="8"
-                  strokeDasharray={`${Math.PI * 48}`}
+                  strokeDasharray={`${Math.PI * 48} ${Math.PI * 48}`}
                   strokeDashoffset={`${Math.PI * 48 * (1 - 68/100)}`}
                   strokeLinecap="round"
                 />
               </svg>
               
               {/* Center score */}
-              <div className="absolute inset-0 flex items-center justify-center">
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-4">
                 <div className="text-center">
                   <span className="text-4xl font-bold text-gray-900">{healthScore}</span>
                   <p className="text-sm text-gray-600 mt-1">Overall Score</p>
