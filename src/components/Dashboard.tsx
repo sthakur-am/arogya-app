@@ -97,7 +97,7 @@ const Dashboard = () => {
             </div>
             
             {/* Min/Max labels */}
-            <div className="flex justify-between text-xs text-gray-500 mb-4 w-48 mx-auto">
+            <div className="flex justify-between text-xs text-gray-500 mb-4 w-48 mx-auto -mt-2">
               <span className="text-left">0</span>
               <span className="text-right">100</span>
             </div>
