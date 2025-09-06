@@ -140,33 +140,33 @@ const Dashboard = () => {
           </div>
           
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <span className="font-medium text-gray-900">Youth Health Program</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-16 h-2 bg-gray-200 rounded-full">
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="font-medium text-gray-900 mb-2">Youth Health Program</div>
+              <div className="flex items-center space-x-3">
+                <div className="flex-1 h-2 bg-gray-200 rounded-full">
                   <div className="w-3/4 h-2 bg-green-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-900 w-10">75%</span>
+                <span className="text-sm font-medium text-gray-900">75%</span>
               </div>
             </div>
             
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <span className="font-medium text-gray-900">Pregnancy Care Program</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-16 h-2 bg-gray-200 rounded-full">
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="font-medium text-gray-900 mb-2">Pregnancy Care Program</div>
+              <div className="flex items-center space-x-3">
+                <div className="flex-1 h-2 bg-gray-200 rounded-full">
                   <div className="w-1/3 h-2 bg-pink-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-900 w-10">33%</span>
+                <span className="text-sm font-medium text-gray-900">33%</span>
               </div>
             </div>
             
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <span className="font-medium text-gray-900">Senior Care Program</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-16 h-2 bg-gray-200 rounded-full">
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="font-medium text-gray-900 mb-2">Senior Care Program</div>
+              <div className="flex items-center space-x-3">
+                <div className="flex-1 h-2 bg-gray-200 rounded-full">
                   <div className="w-1/5 h-2 bg-blue-500 rounded-full"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-900 w-10">20%</span>
+                <span className="text-sm font-medium text-gray-900">20%</span>
               </div>
             </div>
           </div>
