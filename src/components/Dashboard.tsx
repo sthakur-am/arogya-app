@@ -170,6 +170,14 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          
+          <div className="text-center mt-4">
+            <p className="text-sm text-gray-600 mb-2">Active Programs</p>
+            <div className="flex items-center justify-center text-green-600">
+              <Target className="w-4 h-4 mr-1" />
+              <span className="text-sm font-medium">3 programs in progress</span>
+            </div>
+          </div>
         </div>
       </div>
 
