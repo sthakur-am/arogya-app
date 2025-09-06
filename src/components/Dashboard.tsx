@@ -62,11 +62,11 @@ const Dashboard = () => {
           
           <div className="relative mb-6">
             {/* Health Score Dial */}
-            <div className="w-40 h-24 mx-auto mb-4 relative">
-              <svg className="w-40 h-24" viewBox="0 0 160 100">
+            <div className="w-48 h-28 mx-auto mb-4 relative">
+              <svg className="w-48 h-28" viewBox="0 0 192 112">
                 {/* Background arc */}
                 <path
-                  d="M 20 80 A 60 60 0 0 1 140 80"
+                  d="M 16 96 A 80 80 0 0 1 176 96"
                   stroke="currentColor"
                   strokeWidth="8"
                   fill="none"
@@ -74,12 +74,12 @@ const Dashboard = () => {
                 />
                 {/* Progress arc */}
                 <path
-                  d="M 20 80 A 60 60 0 0 1 140 80"
+                  d="M 16 96 A 80 80 0 0 1 176 96"
                   stroke="currentColor"
                   strokeWidth="10"
                   fill="none"
-                  strokeDasharray="188.5"
-                  strokeDashoffset={188.5 - (188.5 * (user?.healthScore || 78) / 100)}
+                  strokeDasharray="251.3"
+                  strokeDashoffset={251.3 - (251.3 * (user?.healthScore || 78) / 100)}
                   className={`transition-all duration-1000 ease-out ${
                     (user?.healthScore || 78) < 50 ? 'text-red-500' :
                     (user?.healthScore || 78) <= 70 ? 'text-yellow-500' : 'text-green-500'
@@ -97,9 +97,9 @@ const Dashboard = () => {
             </div>
             
             {/* Min/Max labels */}
-            <div className="flex justify-between text-xs text-gray-500 mb-4 absolute w-full -mt-2">
-              <span className="ml-5">0</span>
-              <span className="mr-5">100</span>
+            <div className="flex justify-between text-xs text-gray-500 mb-4 absolute w-full -mt-4">
+              <span>0</span>
+              <span>100</span>
             </div>
           </div>
           
