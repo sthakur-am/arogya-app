@@ -60,40 +60,60 @@ const Dashboard = () => {
             <Target className="w-5 h-5 text-blue-600" />
           </div>
           
-          <div className="relative">
-            <div className="w-32 h-32 mx-auto mb-4">
-              <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
+          <div className="relative mb-6">
+            {/* Health Score Dial */}
+            <div className="w-40 h-20 mx-auto mb-4 relative">
+              <svg className="w-40 h-20" viewBox="0 0 160 80">
+                {/* Background arc */}
+                <path
+                  d="M 20 60 A 60 60 0 0 1 140 60"
                   stroke="currentColor"
                   strokeWidth="8"
                   fill="none"
                   className="text-gray-200"
                 />
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
+                {/* Progress arc */}
+                <path
+                  d="M 20 60 A 60 60 0 0 1 140 60"
                   stroke="currentColor"
                   strokeWidth="8"
                   fill="none"
-                  strokeDasharray={`${2 * Math.PI * 50}`}
-                  strokeDashoffset={`${2 * Math.PI * 50 * (1 - (user?.healthScore || 78) / 100)}`}
-                  className="text-blue-600 transition-all duration-1000 ease-out"
+                  strokeDasharray="188.5"
+                  strokeDashoffset={188.5 - (188.5 * (user?.healthScore || 78) / 100)}
+                  className={`transition-all duration-1000 ease-out ${
+                    (user?.healthScore || 78) < 50 ? 'text-red-500' :
+                    (user?.healthScore || 78) <= 70 ? 'text-yellow-500' : 'text-green-500'
+                  }`}
+                  strokeLinecap="round"
                 />
               </svg>
+              
+              {/* Score display */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-2xl font-bold text-gray-900">{user?.healthScore || 78}</span>
+                <div className="text-center mt-4">
+                  <span className="text-3xl font-bold text-gray-900">{user?.healthScore || 78}</span>
+                  <div className="text-xs text-gray-500">/ 100</div>
+                </div>
               </div>
+            </div>
+            
+            {/* Min/Max labels */}
+            <div className="flex justify-between text-xs text-gray-500 mb-4 px-2">
+              <span>Min: 0</span>
+              <span>Max: 100</span>
             </div>
             
             <div className="text-center">
               <p className="text-sm text-gray-600 mb-2">Overall Health</p>
-              <div className="flex items-center justify-center text-green-600">
+              <div className={`flex items-center justify-center ${
+                (user?.healthScore || 78) < 50 ? 'text-red-600' :
+                (user?.healthScore || 78) <= 70 ? 'text-yellow-600' : 'text-green-600'
+              }`}>
                 <TrendingUp className="w-4 h-4 mr-1" />
-                <span className="text-sm font-medium">Improving steadily</span>
+                <span className="text-sm font-medium">
+                  {(user?.healthScore || 78) < 50 ? 'Needs attention' :
+                   (user?.healthScore || 78) <= 70 ? 'Making progress' : 'Improving steadily'}
+                </span>
               </div>
             </div>
           </div>
