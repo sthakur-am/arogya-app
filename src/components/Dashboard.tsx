@@ -62,7 +62,7 @@ const Dashboard = () => {
           
           <div className="relative mb-6">
             {/* Health Score Dial */}
-            <div className="w-48 h-28 mx-auto mb-4 relative">
+            <div className="w-48 h-28 mx-auto mb-4 relative flex flex-col items-center">
               <svg className="w-48 h-28" viewBox="0 0 192 112">
                 {/* Background arc */}
                 <path
@@ -97,9 +97,9 @@ const Dashboard = () => {
             </div>
             
             {/* Min/Max labels */}
-            <div className="flex justify-between text-xs text-gray-500 mb-4 absolute w-full -mt-4">
-              <span>0</span>
-              <span>100</span>
+            <div className="flex justify-between text-xs text-gray-500 mb-4 w-48 mx-auto">
+              <span className="text-left">0</span>
+              <span className="text-right">100</span>
             </div>
           </div>
           
